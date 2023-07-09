@@ -1,4 +1,5 @@
 import React from "react";
+import FormularioCadastro from "./Components/FormularioCadastro";
 
 class Usuario {
   constructor(nome, matricula, cpf) {
@@ -55,7 +56,12 @@ function App() {
   console.log(jogador1);
   console.log(tecnico1);
 
-  return <div>{/* Conteúdo do componente App */}</div>;
+  return (
+    <div>
+      <h1>Cadastro de Funcionários</h1>
+      <FormularioCadastro />
+    </div>
+  );
 }
 
 export default App;
