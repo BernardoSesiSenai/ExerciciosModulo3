@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function FormularioCadastro() {
+function FormularioCadastro({ adicionarFuncionario }) {
   const [tipoFuncionario, setTipoFuncionario] = useState("");
   const [nome, setNome] = useState("");
   const [matricula, setMatricula] = useState("");
@@ -13,18 +13,29 @@ function FormularioCadastro() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (tipoFuncionario === "jogador") {
-      // Lógica para cadastrar jogador
-      console.log("Cadastro de jogador:", {
+      const jogador = {
+        tipoFuncionario,
         nome,
         matricula,
         cpf,
         posicao,
         quantidadeGols,
         preco,
-      });
+        dataInicio,
+      };
+      adicionarFuncionario(jogador);
     } else if (tipoFuncionario === "tecnico") {
-      // Lógica para cadastrar técnico
-      console.log("Cadastro de técnico:", { nome, matricula, cpf, dataInicio });
+      const tecnico = {
+        tipoFuncionario,
+        nome,
+        matricula,
+        cpf,
+        posicao,
+        quantidadeGols,
+        preco,
+        dataInicio,
+      };
+      adicionarFuncionario(tecnico);
     }
     // Limpar campos do formulário
     setTipoFuncionario("");
