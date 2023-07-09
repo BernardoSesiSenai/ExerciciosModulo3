@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import FormularioCadastro from "./Components/FormularioCadastro";
+import TabelaJogadores from "./Components/TabelaJogadores";
 
 function App() {
   const [funcionarios, setFuncionarios] = useState([]);
