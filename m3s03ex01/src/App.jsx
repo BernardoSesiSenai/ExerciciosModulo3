@@ -1,65 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import FormularioCadastro from "./Components/FormularioCadastro";
 
-class Usuario {
-  constructor(nome, matricula, cpf) {
-    this.nome = nome;
-    this.matricula = matricula;
-    this.cpf = cpf;
-  }
-}
-
-class Jogador extends Usuario {
-  constructor(nome, matricula, cpf, posicao, quantidadeGols, preco) {
-    super(nome, matricula, cpf);
-    this.posicao = posicao;
-    this.quantidadeGols = quantidadeGols;
-    this.preco = preco;
-  }
-
-  fazerGol() {
-    this.quantidadeGols += 1;
-  }
-}
-
-class Tecnico extends Usuario {
-  constructor(nome, matricula, cpf, dataInicio) {
-    super(nome, matricula, cpf);
-    this.dataInicio = dataInicio;
-  }
-
-  escalarJogadores(jogadores) {
-    // Retorna a lista de jogadores escalados
-    return jogadores;
-  }
-}
-
 function App() {
-  // Exemplo de uso das classes
-  const jogador1 = new Jogador(
-    "Bernardo",
-    "123",
-    "123.456.789-00",
-    "Atacante",
-    1,
-    1000000
-  );
-  jogador1.fazerGol();
+  const [funcionarios, setFuncionarios] = useState([]);
 
-  const tecnico1 = new Tecnico(
-    "Mano Menezes",
-    "001",
-    "987.654.321-00",
-    new Date()
-  );
-
-  console.log(jogador1);
-  console.log(tecnico1);
+  const adicionarFuncionario = (funcionario) => {
+    setFuncionarios([...funcionarios, funcionario]);
+  };
 
   return (
     <div>
       <h1>Cadastro de Funcionários</h1>
-      <FormularioCadastro />
+      <FormularioCadastro adicionarFuncionario={adicionarFuncionario} />
+      <h2>Lista de Funcionários:</h2>
+      <ul>
+        {funcionarios.map((funcionario, index) => (
+          <li key={index}>
+            <strong>Nome:</strong> {funcionario.nome}
+            <br />
+            {funcionario.matricula && (
+              <>
+                <strong>Matrícula:</strong> {funcionario.matricula}
+                <br />
+              </>
+            )}
+            {funcionario.cpf && (
+              <>
+                <strong>CPF:</strong> {funcionario.cpf}
+                <br />
+              </>
+            )}
+            {funcionario.posicao && (
+              <>
+                <strong>Posição:</strong> {funcionario.posicao}
+                <br />
+              </>
+            )}
+            {funcionario.quantidadeGols && (
+              <>
+                <strong>Quantidade de Gols:</strong>{" "}
+                {funcionario.quantidadeGols}
+                <br />
+              </>
+            )}
+            {funcionario.preco && (
+              <>
+                <strong>Preço:</strong> {funcionario.preco}
+                <br />
+              </>
+            )}
+            {funcionario.dataInicio && (
+              <>
+                <strong>Data de Início:</strong> {funcionario.dataInicio}
+                <br />
+              </>
+            )}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
