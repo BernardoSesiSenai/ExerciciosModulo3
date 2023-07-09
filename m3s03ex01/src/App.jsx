@@ -1,35 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+class Usuario {
+  constructor(nome, matricula, cpf) {
+    this.nome = nome;
+    this.matricula = matricula;
+    this.cpf = cpf;
+  }
 }
 
-export default App
+class Jogador extends Usuario {
+  constructor(nome, matricula, cpf, posicao, quantidadeGols, preco) {
+    super(nome, matricula, cpf);
+    this.posicao = posicao;
+    this.quantidadeGols = quantidadeGols;
+    this.preco = preco;
+  }
+
+  fazerGol() {
+    this.quantidadeGols += 1;
+  }
+}
+
+class Tecnico extends Usuario {
+  constructor(nome, matricula, cpf, dataInicio) {
+    super(nome, matricula, cpf);
+    this.dataInicio = dataInicio;
+  }
+
+  escalarJogadores(jogadores) {
+    // Retorna a lista de jogadores escalados
+    return jogadores;
+  }
+}
+
+function App() {
+  // Exemplo de uso das classes
+  const jogador1 = new Jogador(
+    "Bernardo",
+    "123",
+    "123.456.789-00",
+    "Atacante",
+    1,
+    1000000
+  );
+  jogador1.fazerGol();
+
+  const tecnico1 = new Tecnico(
+    "Mano Menezes",
+    "001",
+    "987.654.321-00",
+    new Date()
+  );
+
+  console.log(jogador1);
+  console.log(tecnico1);
+
+  return <div>{/* Conteúdo do componente App */}</div>;
+}
+
+export default App;
